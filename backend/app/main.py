@@ -1,11 +1,9 @@
 ﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
-
-# Импортируем модели, чтобы SQLAlchemy знал о них при создании таблиц
+from app.api import tasks as tasks_router
 from app.models import user, task, category
 
-# Создаем таблицы в базе данных (если их еще нет)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="ToDo List API", version="1.0.0")
@@ -17,6 +15,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Подключаем роутер для задач
+app.include_router(tasks_router.router, prefix="/api/tasks", tags=["tasks"])
 
 @app.get("/")
 def read_root():
