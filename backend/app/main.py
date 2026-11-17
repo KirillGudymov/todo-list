@@ -1,12 +1,18 @@
-from fastapi import FastAPI
+﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.database import engine, Base
+
+# Импортируем модели, чтобы SQLAlchemy знал о них при создании таблиц
+from app.models import user, task, category
+
+# Создаем таблицы в базе данных (если их еще нет)
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="ToDo List API", version="1.0.0")
 
-# Настройка CORS (чтобы фронтенд мог делать запросы)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Для продакшена лучше указать конкретный домен
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
