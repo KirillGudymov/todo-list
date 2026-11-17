@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 DB_USER = "u1662611_todolist-team"
 DB_PASSWORD = "todolist-team"
 DB_HOST = "37.140.192.78"
-DB_NAME = "u1662611_todolist-team" 
+DB_NAME = "u1662611_todo-list"
 
 SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
 
