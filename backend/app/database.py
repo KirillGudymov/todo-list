@@ -3,10 +3,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-DB_USER = os.getenv("DB_USER", "todo_user")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "todo_password")
-DB_HOST = os.getenv("DB_HOST", "db")
-DB_NAME = os.getenv("DB_NAME", "todo_list")
+DB_USER = os.getenv("DB_USER", "u1662611_todolist-team")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "todolist-team")
+DB_HOST = os.getenv("DB_HOST", "37.140.192.78")
+DB_NAME = os.getenv("DB_NAME", "u1662611_todo-list")
 
 SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
 
