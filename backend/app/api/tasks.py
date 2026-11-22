@@ -1,7 +1,7 @@
 ﻿from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr, ConfigDict
 from datetime import datetime
 
 from app.database import SessionLocal
@@ -34,7 +34,7 @@ class TaskResponse(BaseModel):
     user_id: int
 
     class Config:
-        orm_mode = True
+        model_config = ConfigDict(from_attributes=True)
 
 # Зависимость для получения сессии БД
 def get_db():
