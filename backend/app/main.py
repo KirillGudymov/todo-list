@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app.api import tasks as tasks_router
 from app.models import user, task, category
+from app.api import auth
 
 Base.metadata.create_all(bind=engine)
 
@@ -17,7 +18,7 @@ app.add_middleware(
 )
 
 # Подключаем роутер для задач
-app.include_router(tasks_router.router, prefix="/api/tasks", tags=["tasks"])
+app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
 
 @app.get("/")
 def read_root():

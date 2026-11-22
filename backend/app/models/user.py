@@ -1,6 +1,7 @@
 ﻿from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from datetime import datetime
+from pydantic import BaseModel, ConfigDict
 from ..database import Base
 
 class User(Base):
@@ -13,3 +14,4 @@ class User(Base):
 
     tasks = relationship("Task", back_populates="owner")
     categories = relationship("Category", back_populates="owner")
+    model_config = ConfigDict(from_attributes=True)
